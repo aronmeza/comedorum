@@ -8,6 +8,14 @@
 		<title><g:message code="default.list.label" args="[entityName]" /></title>
 	</head>
 	<body>
+<g:form method="POST">
+	<fieldset class="form">
+		<g:render template="formConvert"/>
+	</fieldset>
+	<fieldset class="buttons">
+		<g:actionSubmit class="convert" action="show"  value="${message(code: 'default.button.convert.label', default:'convert')}"/>
+	</fieldset>
+</g:form>
 		<a href="#list-receta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div class="nav" role="navigation">
 			<ul>

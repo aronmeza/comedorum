@@ -3,6 +3,8 @@ package org.conversor
 import org.springframework.dao.DataIntegrityViolationException
 
 class RecetaController {
+	
+    def recetaService
 
     static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
 
@@ -33,13 +35,22 @@ class RecetaController {
     def show() {
         def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
+		if(params.nombre != null){
+		def id = Receta.findByNombre(params.nombre).id
+		def receta = recetaService.convertirReceta(params.nombre, new BigDecimal(params.rendimiento),id)
+println '------------'+receta.nombre
+		render(view:"show", model: [recetaInstance:receta])
+		return
+		}else{
 			flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
-            redirect(action: "list")
-            return
+	            redirect(action: "list")
+            	return
+		}
         }
 
         [recetaInstance: recetaInstance]
     }
+	
 
     def edit() {
         def recetaInstance = Receta.get(params.id)

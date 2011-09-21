@@ -13,4 +13,9 @@ class Ingrediente {
 	presentacion maxSize:40
 	etapa maxSize:40, default:'General'
     }
+    
+    String toString(){
+        return materia.nombre +': '+cantidad +' '+unidadMedida
+        
+    }
 }
