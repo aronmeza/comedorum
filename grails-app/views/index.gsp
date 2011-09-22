@@ -75,6 +75,7 @@
 		</style>
 	</head>
 	<body>
+	<!--
 		<a href="#page-body" class="skip"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 		<div id="status" role="complementary">
 			<h1>Application Status</h1>
@@ -106,10 +107,23 @@
 				<h2>Available Controllers:</h2>
 				<ul>
 					<g:each var="c" in="${grailsApplication.controllerClasses.sort { it.fullName } }">
-						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.fullName}</g:link></li>
+						<li class="controller"><g:link controller="${c.logicalPropertyName}">${c.name}, ${c.logicalPropertyName}</g:link></li>
 					</g:each>
 				</ul>
 			</div>
-		</div>
+		</div> -->
+	
+	<h1>Bienvenido</h1>
+	
+	<g:form method="POST" controller="receta">
+	<fieldset class="form">                                                                        
+                <g:render template="/receta/formConvert"/>
+        </fieldset>     
+        <fieldset class="buttons">
+                <g:actionSubmit class="convert" action="show"  value="${message(code: 'default.button.c
+onvert.label', default:'convert')}"/>
+        </fieldset> 
+</g:form>     
+	
 	</body>
 </html>
