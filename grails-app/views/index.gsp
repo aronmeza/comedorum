@@ -113,6 +113,7 @@
 			</div>
 		</div> -->
 	
+	<div id="body" role="main">
 	<h1>Bienvenido</h1>
 	
 	<g:form method="POST" controller="receta">
@@ -120,10 +121,9 @@
                 <g:render template="/receta/formConvert"/>
         </fieldset>     
         <fieldset class="buttons">
-                <g:actionSubmit class="convert" action="show"  value="${message(code: 'default.button.c
-onvert.label', default:'convert')}"/>
+                <g:actionSubmit class="convert" action="show"  value="${message(code: 'default.button.convert.label', default:'convert')}"/>
         </fieldset> 
 </g:form>     
-	
+	</div>
 	</body>
 </html>

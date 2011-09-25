@@ -39,8 +39,9 @@ class RecetaController {
         def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
 		if(params.nombre != null){
-		def id = Receta.findByNombre(params.nombre)
+		def id = Receta.findByNombre(params.nombre).id
 		if(id!=null){
+		def receta = recetaService.convertirReceta(params.nombre, new BigDecimal(params.rendimiento),id)
 		render(view:"show", model: [recetaInstance:receta])
 		return
 		}else{
