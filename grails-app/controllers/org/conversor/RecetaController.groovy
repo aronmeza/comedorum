@@ -14,7 +14,7 @@ class RecetaController {
     def index() {
         redirect(action: "list", params: params)
     }
-
+    
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
         [recetaInstanceList: Receta.list(params), recetaInstanceTotal: Receta.count()]
@@ -120,4 +120,20 @@ class RecetaController {
             redirect(action: "show", id: params.id)
         }
     }
+    
+   @Secured(['ROLE_COCINERO'])
+    def saveMin(){
+        println "nombre rendimiento"
+        def receta = Receta.findByNombre(params.nombre);
+        
+        if(receta!=null){
+            redirect(action: "edit", id: receta.id)
+        }else{
+            receta = new Receta(params);
+            println "$receta.nombre"
+            receta.save(flush:true)
+            redirect(action: "edit", id: receta.id)
+        }
+    }
 }
+ 

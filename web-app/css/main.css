@@ -90,6 +90,18 @@ img {
 	margin: 1em;
 }
 
+#usuario {
+    position: absolute;
+    top: 20px;
+    right: 25%;
+    text-align: right;
+    color: black;
+}
+#derecha{
+    position: absolute;
+    left: 37%;
+    text-align: right;
+}
 .content {
 }
 
@@ -103,6 +115,17 @@ img {
 	border: none;
 }
 
+.left {
+	width:50%;
+	float:left;
+}
+
+.right{
+	width:50%;
+	float: right;
+}
+
+
 .footer {
 	background: #abbf78;
 	color: #000;
@@ -111,6 +134,7 @@ img {
 	margin-top: 1.5em;
 	padding: 1em;
 	min-height: 1em;
+	text-align: center;
 }
 
 .footer a {
@@ -128,7 +152,15 @@ img {
 	text-indent: -9999px;
 }
 
-/* NAVIGATION MENU */
+.status {
+    position: absolute;
+    top: 20px;
+    right: 6px;
+    text-align: right;
+    color: white;
+}
+
+/* NAVIGATION MENU
 
 .nav {
 	background-color: #efefef;
@@ -180,12 +212,12 @@ img {
 	text-decoration: underline;
 }
 
-.nav a.home, .nav a.list, .nav a.create {
+.nav a.home, .nav a.list, .nav a.create, .nav a.createReceta, .nav a.createMateriaPrima{
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
-
+ */
 .nav a.home {
 	background-image: url(../images/skin/house.png);
 }
@@ -194,8 +226,11 @@ img {
 	background-image: url(../images/skin/database_table.png);
 }
 
-.nav a.create {
+.nav a.create  {
 	background-image: url(../images/skin/database_add.png);
+}
+.nav a.createReceta{
+		background-image: url(../images/skin/receta_add.png);
 }
 
 /* CREATE/EDIT FORMS AND SHOW PAGES */
@@ -257,7 +292,7 @@ select[multiple] {
 }
 
 textarea {
-	width: 250px;
+	width: 600px;
 	height: 150px;
 	overflow: auto; /* IE always renders vertical scrollbar without this */
 	vertical-align: top;
@@ -473,6 +508,8 @@ th:hover, tr:hover {
 	background: #E1F2B6;
 }
 
+
+
 /* PAGINATION */
 
 .pagination {
@@ -517,12 +554,14 @@ th:hover, tr:hover {
 
 .buttons {
 	background-color: #efefef;
+	width: 15px;
+	
 	overflow: hidden;
 	padding: 0.3em;
 	   -moz-box-shadow: 0 0 3px 1px #aaaaaa;
 	-webkit-box-shadow: 0 0 3px 1px #aaaaaa;
 	        box-shadow: 0 0 3px 1px #aaaaaa;
-	margin: 0.1em 0 0 0;
+	margin: 0.1em 0 1em 25%;
 	border: none;
 }
 
@@ -561,11 +600,12 @@ th:hover, tr:hover {
 	text-decoration: underline;
 }
 
-.buttons .delete, .buttons .edit, .buttons .save .convert{
+.buttons .delete, .buttons .edit, .buttons .save, .buttons .convert{
 	background-position: 0.7em center;
 	background-repeat: no-repeat;
 	text-indent: 25px;
 }
+
 
 .buttons .delete {
 	background-image: url(../images/skin/database_delete.png);
@@ -584,3 +624,20 @@ a.skip {
 	position: absolute;
 	left: -9999px;
 }
+.boton-crear {
+    margin-left:80%;
+    
+}
+.input-size-medium {
+    width: 100px;
+}
+.td-left{
+    width: 40%;
+    
+        
+}
+.input-size-small{
+    width: 60px;
+}
+#forma-receta label {
+    display: inline;}

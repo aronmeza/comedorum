@@ -100,4 +100,27 @@ class IngredienteController {
             redirect(action: "show", id: params.id)
         }
     }
+    
+    def agregarMin(){
+        println "-------------------"+params
+        MateriaPrima materiaPrima= MateriaPrima.findByNombre(params.ingNombre);
+        if(materiaPrima == null ){
+            materiaPrima = new MateriaPrima(
+            unidadMedida: params.ingUnidadMedida,
+            nombre:params.ingNombre
+            ).save(flush:true)
+        }
+        Receta receta = Receta.findById(params.id)
+        Ingrediente ingInstance= new Ingrediente(
+            cantidad:params.ingCantidad,
+            unidadMedida:params.ingUnidadMedida,
+            presentacion:params.ingPresentacion,
+            etapa:params.etapa,
+            receta:receta ,
+            materia:materiaPrima	
+        ).save(flush:true)
+        
+        
+        
+    }
 }

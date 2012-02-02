@@ -82,6 +82,7 @@
 		height: 12px;
 	}
 	</style>
+                        <r:require module="jquery-ui"/>
 </head>
 
 <body>

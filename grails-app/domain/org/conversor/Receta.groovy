@@ -25,22 +25,22 @@ class Receta {
     
     static constraints = {
   	nombre unique:true, blank:false, maxSize:70
-        procedimiento maxSize:10000
+        procedimiento maxSize:10000, nullable:true
         rendimiento blank:false, matches:"[0-9]+"
-        temperatura maxSize:40
-        tiempo maxSize:40
-        porcion maxSize:40
-        textura maxSize:40
-        forma maxSize:40
-        color maxSize:40
-        sabor maxSize:40
-        calorias maxSize:40
-        proteinas maxSize:40
-        grasa maxSize:40
-        carbohidratos maxSize:40
-        colesterol maxSize:40
-        sodio maxSize:40
-        fibra maxSize:40
-	tipoPlato inList:['Ensalada','Sopa','Acompañaniemto','Salsa','Plato Fuerte','Frijol','Almidon','Bebida','Postre','Aderezo']
+        temperatura maxSize:40, nullable:true
+        tiempo maxSize:40, nullable:true
+        porcion maxSize:40, nullable:true
+        textura maxSize:40, nullable:true
+        forma maxSize:40, nullable:true
+        color maxSize:40, nullable:true
+        sabor maxSize:40, nullable:true
+        calorias maxSize:40, nullable:true
+        proteinas maxSize:40, nullable:true
+        grasa maxSize:40, nullable:true
+        carbohidratos maxSize:40, nullable:true
+        colesterol maxSize:40, nullable:true
+        sodio maxSize:40, nullable:true
+        fibra maxSize:40, nullable:true
+	tipoPlato nullable:true ,inList:['Ensalada','Sopa','Acompañaniemto','Salsa','Plato Fuerte','Frijol','Almidon','Bebida','Postre','Aderezo','Tipo plato 1','Tipo plato 2','Tipo plato 3']
 	}
 }
