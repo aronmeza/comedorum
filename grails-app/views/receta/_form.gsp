@@ -1,5 +1,7 @@
 <%@ page import="org.conversor.Receta" %>
 
+
+
 <table  id="forma-receta">
   <tr>
     <td class="td-left" align="left"><div class="fieldcontain ${hasErrors(bean: recetaInstance, field: 'nombre', 'error')} required ">
@@ -56,6 +58,7 @@
 
     </td>
     <td>
+      <div id="editorGridIngredientes">Hola Mundo</div>
       <div id="despues">
         Ingredientes
         <g:each in="${recetaInstance?.ingredientes?}" var="i">
@@ -219,6 +222,89 @@ ${recetaInstance?.procedimiento}
 
 
 <r:script>
+  
+Ext.onReady(function() {
+
+var editorGridIngredientes = Ext.get('editorGridIngredientes');
+  var myReader = new Ext.data.ArrayReader({}, [
+          {name: 'company'},
+          {name: 'price', type: 'float'},
+          {name: 'change', type: 'float'},
+          {name: 'pctChange', type: 'float'},
+          {name: 'lastChange', type: 'date', dateFormat: 'n/j h:ia'}
+  ]);
+  
+    var myData = [
+          ['Apple',29.89,0.24,0.81,'9/1 12:00am'],
+          ['Ext',83.81,0.28,0.34,'9/12 12:00am'],
+          ['Google',71.72,0.02,0.03,'10/1 12:00am'],
+          ['Microsoft',52.55,0.01,0.02,'7/4 12:00am'],
+          ['Yahoo!',29.01,0.42,1.47,'5/22 12:00am']
+    ];
+  
+  var grid = new Ext.grid.GridPanel({
+    store: new Ext.data.Store({
+      data: myData,
+      reader: myReader}),
+      renderTo    : Ext.getBody(), 
+    columns: [
+      {
+        header: 'Compañia', 
+        width: 120, 
+        sortable: true, 
+        dataIndex: 
+        'company'
+      },
+      {
+        header: 'Precio', 
+        width: 90, 
+        sortable: true, 
+        dataIndex: 'price'
+      },
+      {
+        header: 'Cambio', 
+        width: 90, 
+        sortable: true, 
+        dataIndex: 'change'
+      },
+      {
+        header: '% Cambio', 
+        width: 90, 
+        sortable: true, 
+        dataIndex: 'pctChange'
+      },
+      {
+        header: 'Último cambio', 
+        width: 120, 
+        sortable: true,
+        renderer: Ext.util.Format.dateRenderer('m/d/Y'),dataIndex: 'lastChange'
+      }
+    ],
+    viewConfig: {
+    forceFit: true
+      },
+    renderTo: Ext.Element.get('editorGridIngredientes'),
+    title: 'Titulo de la tabla',
+    width: 500,
+    frame: true
+});
+
+
+
+
+
+});  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
   function prueba(s){
   $.post("${createLink(action:'actualizarIngMin', controller:'Ingrediente')}",{ingId:s,ingCantidad:$("#"+s).val(),id:${recetaInstance.id}},
   function(data){

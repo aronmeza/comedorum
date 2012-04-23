@@ -15,8 +15,26 @@
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'main.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'mobile.css')}" type="text/css">
     <link rel="stylesheet" href="${resource(dir: 'css', file: 'style.css')}" type="text/css">
-     <link rel="stylesheet" href="${resource(dir: 'css', file: 'button.css')}" type="text/css">
-     
+    <link rel="stylesheet" href="${resource(dir: 'css', file: 'button.css')}" type="text/css">
+    <script type="text/javascript" src="${resource(dir:'js', file: 'ext-base.js')}"></script>
+    <script type="text/javascript" src="${resource(dir:'js', file: 'ext-all.js')}"></script>
+    <script type="text/javascript" src="${resource(dir:'js', file: 'formReceta.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Divider.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.FindAndReplace.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Font.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Heading.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.HR.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Image.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.IndentOutdent.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Link.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.MidasCommand.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Plugins.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.RemoveFormat.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.SpecialCharacters.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.SubSuperScript.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Table.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.UndoRedo.js')}"></script>
+ <script type="text/javascript" src="${resource(dir:'js', file: 'Ext.ux.form.HtmlEditor.Word.js')}"></script>
   <g:layoutHead/>
   <r:layoutResources/>	
   

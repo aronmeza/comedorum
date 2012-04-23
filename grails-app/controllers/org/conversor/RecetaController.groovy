@@ -2,14 +2,15 @@ package org.conversor
 
 import org.springframework.dao.DataIntegrityViolationException
 import grails.plugins.springsecurity.Secured
-import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils        
+import org.codehaus.groovy.grails.plugins.springsecurity.SpringSecurityUtils     
+import grails.converters.*   
 
 class RecetaController {
 	
     def recetaService
     def springSecurityService
 
-    static allowedMethods = [save: "POST", update: "POST", delete: "POST"]
+    static allowedMethods = [save: ["POST","GET"], update: ["POST","GET"], delete: "POST"]
 
     def index() {
         redirect(action: "list", params: params)
@@ -73,11 +74,12 @@ class RecetaController {
     }
 	@Secured(['ROLE_COCINERO'])
     def update() {
+	println "00000000update"
         def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
             redirect(action: "list")
-            return
+            render "{error:'notfound'}"
         }
 
         if (params.version) {
@@ -87,7 +89,7 @@ class RecetaController {
                           [message(code: 'receta.label', default: 'Receta')] as Object[],
                           "Another user has updated this Receta while you were editing")
                 render(view: "edit", model: [recetaInstance: recetaInstance])
-                return
+                render "{error:'alredyinuse'}"
             }
         }
 
@@ -95,11 +97,14 @@ class RecetaController {
 
         if (!recetaInstance.save(flush: true)) {
             render(view: "edit", model: [recetaInstance: recetaInstance])
-            return
+            render "{error:'save'}"
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'receta.label', default: 'Receta'), recetaInstance.id])
-        redirect(action: "show", id: recetaInstance.id)
+        //redirect(action: "show", id: recetaInstance.id)
+	println "111111updated"
+	render "{success:true}"
+	
     }
 	@Secured(['ROLE_COCINERO'])
     def delete() {
@@ -135,5 +140,15 @@ class RecetaController {
             redirect(action: "edit", id: receta.id)
         }
     }
+	
+	def getrecetaajax(){
+	
+	 def recetaInstance = Receta.get(params.id)
+        if (!recetaInstance) {
+            render "{error}" 
+        }
+
+        render recetaInstance as JSON
+	}
 }
  

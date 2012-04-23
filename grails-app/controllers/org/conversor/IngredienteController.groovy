@@ -1,6 +1,10 @@
 package org.conversor
 
 import org.springframework.dao.DataIntegrityViolationException
+import org.conversor.Receta
+import grails.converters.*
+import org.codehaus.groovy.grails.web.json.*;
+import grails.converters.deep.JSON
 
 class IngredienteController {
 
@@ -49,7 +53,7 @@ class IngredienteController {
             return
         }
 
-        [ingredienteInstance: ingredienteInstance]
+        [ingredienteInstance: ingredienteInstance ]
     }
 
     def update() {
@@ -112,15 +116,33 @@ class IngredienteController {
         }
         Receta receta = Receta.findById(params.id)
         Ingrediente ingInstance= new Ingrediente(
-            cantidad:params.ingCantidad,
+            cantidad:new BigDecimal(params.ingCantidad),
             unidadMedida:params.ingUnidadMedida,
             presentacion:params.ingPresentacion,
-            etapa:params.etapa,
+            etapa:params.ingEtapa,
             receta:receta ,
             materia:materiaPrima	
         ).save(flush:true)
         
-        
+        return "succes"
         
     }
+	
+	def getByReceta(){
+		println "---------------------"+params
+		def ingredientes = Ingrediente.executeQuery("from Ingrediente where receta.id="+params.id)
+
+        def lista = []
+        for(ingredienteV in ingredientes) {
+            lista << [ ingrediente:[nombre:ingredienteV.materia.nombre, 
+			etapa:ingredienteV.etapa,
+			cantidad:ingredienteV.cantidad,
+			id:ingredienteV.id,
+			unidadMedida:ingredienteV.unidadMedida]]
+        }
+        render lista as JSON
+        
+	}
+	
+	
 }

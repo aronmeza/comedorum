@@ -103,3 +103,4 @@ grails.plugins.springsecurity.roleHierarchy = '''
 
 //grails gorm configuration
 //grails.gorm.autoFlush = false
+grails.gorm.failOnError = true
