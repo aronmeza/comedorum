@@ -124,7 +124,8 @@ class IngredienteController {
             materia:materiaPrima	
         ).save(flush:true)
         
-        return "succes"
+        render "<li>$materiaPrima.nombre <input id=\"$ingInstance.id\" value=\"$ingInstance.cantidad\" class=\"input-size-medium\"/> $ingInstance.unidadMedida <a href=\"#\" id=\"a$ingInstance.id\"  onclick=\"javascript:prueba($ingInstance.id)\">Actualizar</a> <a href=\"#\" id=\"a$ingInstance.id\"  onclick=\"javascript:pruebaB($ingInstance.id)\">Borrar</a><li>"
+        
         
     }
 	
@@ -144,5 +145,16 @@ class IngredienteController {
         
 	}
 	
-	
+	def actualizarIngMin(){
+		println "========== $params ========"
+		
+		def ingrediente = Ingrediente.get(params.ingId)
+		ingrediente.cantidad = new BigDecimal(params.ingCantidad)
+		if(!ingrediente.save(flush:true)){
+			render "error"
+			return
+		}
+		render params.ingCantidad
+		return
+	}
 }

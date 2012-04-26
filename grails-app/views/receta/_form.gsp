@@ -58,14 +58,15 @@
 
     </td>
     <td>
-      <div id="editorGridIngredientes">Hola Mundo</div>
+        <h4>Ingredientes</h4>
       <div id="despues">
-        Ingredientes
-        <g:each in="${recetaInstance?.ingredientes?}" var="i">
-          <br/>${i?.materia.nombre}<input id="${i?.id}" value="${i?.cantidad}" class="input-size-medium"/>${i?.unidadMedida} <a href="#" id="a${i?.id}"  onclick="javascript:prueba(${i?.id})">Actualizar</a><a href="#" id="a${i?.id}"  onclick="javascript:pruebaB(${i?.id})">Borrar</a>
-        </g:each>
-      </div>
 
+        
+        <g:each in="${recetaInstance?.ingredientes?}" var="i">
+          <li>${i?.materia.nombre} <input id="${i?.id}" value="${i?.cantidad}" class="input-size-medium"/> ${i?.unidadMedida} <a href="#" id="a${i?.id}"  onclick="javascript:prueba(${i?.id})">Actualizar</a> <a href="#" id="a${i?.id}"  onclick="javascript:pruebaB(${i?.id})">Borrar</a><li>
+        </g:each>
+        
+      </div>
     </td>
   </tr>
   <tr>
@@ -223,7 +224,7 @@ ${recetaInstance?.procedimiento}
 
 <r:script>
   
-Ext.onReady(function() {
+/*Ext.onReady(function() {
 
 var editorGridIngredientes = Ext.get('editorGridIngredientes');
   var myReader = new Ext.data.ArrayReader({}, [
@@ -296,7 +297,7 @@ var editorGridIngredientes = Ext.get('editorGridIngredientes');
 });  
   
   
-  
+  */
   
   
   

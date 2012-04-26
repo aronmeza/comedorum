@@ -63,13 +63,14 @@ class RecetaController {
 	
 	@Secured(['ROLE_COCINERO'])
     def edit() {
+    
         def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
             flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
             redirect(action: "list")
             return
         }
-
+		
         [recetaInstance: recetaInstance]
     }
 	@Secured(['ROLE_COCINERO'])
@@ -101,9 +102,9 @@ class RecetaController {
         }
 
 		flash.message = message(code: 'default.updated.message', args: [message(code: 'receta.label', default: 'Receta'), recetaInstance.id])
-        //redirect(action: "show", id: recetaInstance.id)
-	println "111111updated"
-	render "{success:true}"
+        redirect(action: "show", id: recetaInstance.id)
+
+	
 	
     }
 	@Secured(['ROLE_COCINERO'])
@@ -142,7 +143,7 @@ class RecetaController {
     }
 	
 	def getrecetaajax(){
-	
+	println "$params ---------------------------------------receta------------"
 	 def recetaInstance = Receta.get(params.id)
         if (!recetaInstance) {
             render "{error}" 

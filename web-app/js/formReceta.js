@@ -64,8 +64,8 @@ Ext.onReady(function() {
     }
 	
 	var url= location.href.split('/');
-	var length= url.length
-    var idRecetaVar=url[length-1]
+	var length= url.length;
+    var idRecetaVar=url[length-1];
 	
 				 Ext.Ajax.request({
 					url: '/comedorum/receta/getrecetaajax',
