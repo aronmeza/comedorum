@@ -16,17 +16,20 @@ hibernate {
 environments {
     development {
         dataSource {
-           
+           dbCreate = "update"//"create-drop"
+            url = "jdbc:postgresql:comedorum"
         }
     }
     test {
         dataSource {
+        	dbCreate = "update"//"create-drop"
+            url = "jdbc:postgresql:comedorum"
         }
     }
     production {
         dataSource {
             dbCreate = "update"//"create-drop"
-            url = "jdbc:postgresql:comedorumproduction"
+            url = "jdbc:postgresql:comedorum"
         }
 	hibernate{
 	   show_sql = false

@@ -7,19 +7,34 @@
 		<g:set var="entityName" value="${message(code: 'receta.label', default: 'Receta')}" />
 		<title><g:message code="default.show.label" args="[entityName]" /></title>
                 <r:require module="jquery-ui"/>
+      <style type="text/css">
+
+	    #printable { display: none; }
+	
+	    @media print
+	    {
+	    	.footer { display: none; }
+	    	#usuario { display: none; }
+	        #show-receta { display: none; }
+	        #menu { display: none; }
+	        #printable { display: block; }
+	    }
+	    </style>
+                
 	</head>
 	<body>
-		<a href="#show-receta" class="skip" tabindex="-1"><g:message code="default.link.skip.label" default="Skip to content&hellip;"/></a>
 
-<div id="toPrint">
 		<div id="show-receta" class="content scaffold-show" role="main">
 			<h1><g:message code="default.show.label" args="[entityName]" /></h1>
 			<g:if test="${flash.message}">
 			<div class="message" role="status">${flash.message}</div>
 			</g:if>
+			
 			<ol class="property-list receta">
                           <table >
+                          <div id="printFrame" />
                             <tr>
+                            
                               <td>
                                 <g:if test="${recetaInstance?.nombre}">
 					<span id="nombre-label"><g:message code="receta.nombre.label" default="Nombre" /></span>
@@ -87,6 +102,7 @@
 				</li>
 				</g:if>
                               </td>
+                              
                               <td><g:if test="${recetaInstance?.porcion}">
 				<li  >
 					<span id="porcion-label"  ><g:message code="receta.porcion.label" default="Porcion" /></span>
@@ -241,8 +257,91 @@
 			
 			</ol>
 			<g:link controller="receta" action="edit" class="button green" id="${recetaInstance?.id}">Editar</g:link>
+
+
+			
 		</div>
 </div>
+
+
+
+<div id="printable">
+                          <table >
+                          <div id="printFrame" />
+                            <tr>
+                            
+                              <td>
+                                <g:if test="${recetaInstance?.nombre}">
+					<span id="nombre-label"><g:message code="receta.nombre.label" default="Nombre" /></span>
+					
+						<span  aria-labelledby="nombre-label"><g:fieldValue bean="${recetaInstance}" field="nombre"/></span>
+					
+				</g:if>
+                              </td>
+                              <td>
+                                <g:if test="${recetaInstance?.rendimiento}">
+					<span id="rendimiento-label" ><g:message code="receta.rendimiento.label" default="Rendimiento" /></span>
+					
+						<span  aria-labelledby="rendimiento-label"><g:fieldValue bean="${recetaInstance}" field="rendimiento"/></span>
+					
+				</li>
+				</g:if>
+                              </td>
+                              <td></td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <g:if test="${recetaInstance?.ingredientes}">
+				<li>
+					
+                                        <table>
+                                          <thead><td><g:message code="receta.ingredientes.label" default="Ingredientes" /></td></thead>
+                                          <tbody>
+                                       
+                                        
+						<g:each in="${recetaInstance.ingredientes}" var="i">
+						<tr><td><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></td></tr>
+						</g:each>
+                                          </tbody>
+					 </table>
+				</li>
+				</g:if>
+                              </td>
+<td colspan="2">
+                                <g:if test="${recetaInstance?.procedimiento}">
+					<span id="procedimiento-label" ><g:message code="receta.procedimiento.label" default="Procedimiento" /></span>
+					
+						<span aria-labelledby="procedimiento-label">${recetaInstance.procedimiento.decodeHTML()}</span>
+					
+				</g:if>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <g:if test="${recetaInstance?.temperatura}">
+				<li  >
+					<span id="temperatura-label"  ><g:message code="receta.temperatura.label" default="Temperatura" /></span>
+					
+						<span aria-labelledby="temperatura-label"><g:fieldValue bean="${recetaInstance}" field="temperatura"/></span>
+					
+				</li>
+				</g:if>
+                              </td>
+                              <td>
+                                <g:if test="${recetaInstance?.tiempo}">
+				<li  >
+					<span id="tiempo-label"  ><g:message code="receta.tiempo.label" default="Tiempo" /></span>
+					
+						<span   aria-labelledby="tiempo-label"><g:fieldValue bean="${recetaInstance}" field="tiempo"/></span>
+					
+				</li>
+				</g:if>
+                              </td>
+                              
+			</td>
+                            </tr>
+                            </table>
+                            </div>
 <script type="text/javascript">
 
 </script>
