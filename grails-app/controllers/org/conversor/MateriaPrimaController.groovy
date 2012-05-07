@@ -1,6 +1,7 @@
 package org.conversor
 
 import org.springframework.dao.DataIntegrityViolationException
+import grails.converters.JSON
 
 class MateriaPrimaController {
 
@@ -102,8 +103,17 @@ class MateriaPrimaController {
     }
     
     def buscaMateriaPrima(){
-    	def filtro= params.filtro
-    	System.out.println "Busca materia -----------------------						="
+    	def filtro= "%"+params.term+"%"
+    	System.out.println "Busca materia -----------------------						$params="
+    	
+    	def listaMateria = MateriaPrima.findByNombreIlike(filtro)
+        def lista = []
+        for(materiaPrima in listaMateria) {
+            lista << materiaPrima.nombre
+        }
+        println("Lista: $lista")
+        println("ListaJSON: ${lista as JSON}")
+        render lista as JSON
     }
     
 }
