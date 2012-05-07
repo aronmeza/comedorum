@@ -100,4 +100,10 @@ class MateriaPrimaController {
             redirect(action: "show", id: params.id)
         }
     }
+    
+    def buscaMateriaPrima(){
+    	def filtro= params.filtro
+    	System.out.println "Busca materia -----------------------						="
+    }
+    
 }

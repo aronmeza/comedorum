@@ -13,12 +13,19 @@ class RecetaController {
     static allowedMethods = [save: ["POST","GET"], update: ["POST","GET"], delete: "POST"]
 
     def index() {
-        redirect(action: "list", params: params)
+     def listaRecectas = Receta.findAll()
+     
+     [listaRecectasInstance: listaRecectas]
+    
+        
     }
     
     def list() {
         params.max = Math.min(params.max ? params.int('max') : 10, 100)
-        [recetaInstanceList: Receta.list(params), recetaInstanceTotal: Receta.count()]
+         def listaRecectas = Receta.findAll()
+     
+     
+        [recetaInstanceList: Receta.list(params), recetaInstanceTotal: Receta.count(),listaRecectasInstance: listaRecectas]
     }
 	@Secured(['ROLE_COCINERO'])
     def create() {
@@ -150,6 +157,11 @@ class RecetaController {
         }
 
         render recetaInstance as JSON
+	}
+	
+	def s(){
+	println "                   params.term                  "
+		def filtro= params.term
 	}
 }
  
