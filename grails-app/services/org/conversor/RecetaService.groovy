@@ -30,5 +30,44 @@ class RecetaService {
 	recetaOriginal.rendimiento = rendimiento
 	return recetaOriginal
 	}
-
+        
+    List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Integer idReceta, BigDecimal rendimiento){
+        Map<Integer,BigDecimal> suma=new HashMap<Integer, BigDecimal>()
+        for(Ingrediente ing:ingrs){
+            suma.put(ing.id,ing.cantidad)
+        }
+        def receta=convertirReceta (null, rendimiento, idReceta)
+        for(Ingrediente ingres:receta.ingredientes){
+            if(ingres.unidadMedida.equals('kg')||ingres.unidadMedida.equals('l')){
+                ingres.cantidad=ingres.cantidad.multiply(new BigDecimal("1000"))
+                if(ingres.unidadMedida.equals('kg')){
+                    ingres.unidadMedida='gr'
+                }else{
+                    ingres.unidadMedida='ml'
+                }
+                
+                if(suma.containsKey(ingres.id)){
+                    ingres.cantidad=suma.get(ingres.id).add(ingres.cantidad)
+                    suma.put(ingres.id,ingres.cantidad)
+                }else{
+                    suma.put(ingres.id,ingres.cantidad)
+                }
+            }
+            
+        }
+        ingrs=null
+        ingrs=new ArrayList<Ingrediente>()
+        def llaves=suma.keySet()
+        def itera=llaves.iterator()
+        while(itera.hasNext()){
+            Integer id=itera.next()
+            Ingrediente ingreFinal=new Ingrediente()
+            Ingrediente tmp=Ingrediente.get(id)
+            ingreFinal.cantidad=suma.get(id)
+            ingreFinal.materia=tmp.materia
+            ingrs.add(ingreFinal)
+        }
+        
+        return ingrs
+    }
 }
