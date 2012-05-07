@@ -7,11 +7,9 @@
 		<title><g:message code="default.edit.label" args="[entityName]" /></title>
                 <r:require module="jquery-ui"/>
                 <ckeditor:resources />
-                <script type="text/javascript" language="javascript" src="${resource(dir:'js', file: 'jquery.js')}"></script>
 				
                 <!--script type="text/javascript" src="${resource(dir:'js', file: 'ext-base.js')}"></script>
                 
-                <script type="text/javascript" src="${resource(dir:'js', file: 'ext-all.js')}"></script>
                 <script type="text/javascript" src="${resource(dir:'js', file: 'form.js')}"></script-->
 				<!--script type="text/javascript" src="${resource(dir:'js', file: 'storeRecetaIngredientes.js')}"></script-->
 				

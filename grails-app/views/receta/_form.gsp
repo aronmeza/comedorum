@@ -344,7 +344,7 @@ function pruebaB(s){
 			ingCantidad = $( "#ingCantidad" ),
   ingPresentacion = $( "#ingPresentacion" ),
   ingEtapa = $( "#ingEtapa" ),
-  ingUnidadMedida = $( "#ingUnidadMedida option:selected" ).val(),
+  ingUnidadMedida = $( "#ingUnidadMedida option:selected").val(),
 			allFields = $( [] ).add( ingNombre ).add(ingCantidad).add(ingPresentacion).add(ingEtapa).add(ingUnidadMedida),
 			tips = $( ".validateTips2" );
 
