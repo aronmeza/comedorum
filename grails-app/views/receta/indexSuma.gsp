@@ -47,20 +47,24 @@
 <g:form method="POST" controller="receta" action="show">
 		<fieldset class="form">                                                                        
         	        <g:render template="/receta/formConvert"/>
+                       <g:each  in="${listaIngredientes}" var="i" name="listaIngredientes">
+                                          <li><h3><a><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></a></h3></li>        
+                                </g:each>
         	</fieldset>     
         	        <g:actionSubmit class="button green" action="sumaReceta"  value="Suma Receta" />
+                        
 </g:form>    
 
 	
-<div id="wrapper">
-    <ol>
-    <g:if test="${listaIngredientes}">
-		<g:each in="${listaIngredientes}" var="i">
-		      <li><h3><a><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></a></h3></li>        
-	    </g:each>
-	</g:if>
-    </ol>
-  </div>
+ <div id="wrapper">
+                        <ol>
+                        <g:if  test="${listaIngredientes}">
+                                    <g:each  in="${listaIngredientes}" var="i">
+                                          <li><h3><a><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></a></h3></li>        
+                                </g:each>
+                            </g:if>
+                        </ol>
+                      </div>
 
 
 

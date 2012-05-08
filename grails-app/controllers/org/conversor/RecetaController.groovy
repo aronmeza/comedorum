@@ -170,20 +170,21 @@ class RecetaController {
      
 		println "SUMA RECETASSSS-------> $params"
 		def paramsIng= params.listaIngredientes
+                
 		if(params.nombre != null){
 			def id = Receta.findByNombre(params.nombre).id
 			if(id!=null){
 			def listaIngredientes
-				if(paramsIng!=null){
-					listaIngredientes =recetaService.sumaIngredientes( paramsIngrs,  id, new BigDecimal(params.rendimiento));	
+				if(paramsIng != null){
+					listaIngredientes =recetaService.sumaIngredientes( paramsIng,  id, new BigDecimal(params.rendimiento));	
 				}
 				else{
 					listaIngredientes =recetaService.sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
 				}
-				println " 															"
-				prntln "$listaIngredientes"
-				println " 															"
-				prntln "$listaRecectas"
+//				println " 															"
+//				println "$listaIngredientes"
+//				println " 															"
+//				println "$listaRecectas"
 				render(view: "indexSuma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas])
 				return
 			}else{

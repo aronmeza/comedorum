@@ -33,9 +33,10 @@ class RecetaService {
         
     @Transactional(readOnly = true)    
     List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Long idReceta, BigDecimal rendimiento){
-        Map<Integer,BigDecimal> suma=new HashMap<Integer, BigDecimal>()
+        println "=================> $ingrs"
+        Map<Long,Ingrediente> suma=new HashMap<Integer, BigDecimal>()
         for(Ingrediente ing:ingrs){
-            suma.put(ing.id,ing.cantidad)
+            suma.put(ing.id,ing)
         }
         def receta=convertirReceta (null, rendimiento, idReceta)
         for(Ingrediente ingres:receta.ingredientes){
@@ -48,29 +49,34 @@ class RecetaService {
                 }
                 
                 if(suma.containsKey(ingres.id)){
-                    ingres.cantidad=suma.get(ingres.id).add(ingres.cantidad)
-                    suma.put(ingres.id,ingres.cantidad)
+                    ingres.cantidad=suma.getAt(ingres.id).cantidad.add(ingres.cantidad)
+                    suma.put(ingres.id,ingres)
                 }else{
-                    suma.put(ingres.id,ingres.cantidad)
+                    suma.put(ingres.id,ingres)
                 }
             }
             
         }
-        ingrs=null
-        ingrs=new ArrayList<Ingrediente>()
+        List<Ingrediente> nueva=new ArrayList<Ingrediente>()
         def llaves=suma.keySet()
         def itera=llaves.iterator()
         while(itera.hasNext()){
-            Integer id=itera.next()
-            println "$id"
-            Ingrediente ingreFinal=new Ingrediente()
-            Ingrediente tmp=Ingrediente.get(id)
-            ingreFinal.cantidad=suma.get(id)
-            ingreFinal.materia=tmp.materia
-            ingrs.add(ingreFinal)
+            Long id=itera.next()
+            Ingrediente ingreFinal=suma.getAt(id)
+            if (ingreFinal.unidadMedida.equals('gr') || ing.unidadMedida.equals('ml')){
+                    if(ingreFinal.cantidad/1000>=1){
+                            ingreFinal.cantidad = ingreFinal.cantidad/1000
+                            if(ingreFinal.unidadMedida == 'gr'){
+                                    ingreFinal.unidadMedida = 'kg'
+                            }else{
+                                    ingreFinal.unidadMedidad = 'l'
+                            }
+                    }
+            }
+            nueva.add(ingreFinal)
         }
         println "																	"
         println ingrs
-        return ingrs
+        return nueva
     }
 }
