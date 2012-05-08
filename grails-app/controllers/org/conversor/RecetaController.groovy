@@ -175,10 +175,10 @@ class RecetaController {
 			if(id!=null){
 			def listaIngredientes
 				if(paramsIng!=null){
-					listaIngredientes =sumaIngredientes( paramsIngrs,  id, new BigDecimal(params.rendimiento));	
+					listaIngredientes =recetaService.sumaIngredientes( paramsIngrs,  id, new BigDecimal(params.rendimiento));	
 				}
 				else{
-					listaIngredientes =sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
+					listaIngredientes =recetaService.sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
 				}
 				
 				render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
