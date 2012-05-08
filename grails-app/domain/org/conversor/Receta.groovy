@@ -43,4 +43,8 @@ class Receta {
         fibra maxSize:40, nullable:true
 	tipoPlato nullable:true ,inList:['Ensalada','Sopa','Acompañaniemto','Salsa','Plato Fuerte','Frijol','Almidon','Bebida','Postre','Aderezo','Tipo plato 1','Tipo plato 2','Tipo plato 3']
 	}
+        
+    static mapping = {
+        ingredientes sort: 'etapa', order: 'asc'
+    }
 }

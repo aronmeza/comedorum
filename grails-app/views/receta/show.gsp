@@ -13,11 +13,25 @@
 	
 	    @media print
 	    {
+                #printable h2{ color: #48802c;}
+                #printable h3{
+                              font-weight: normal;
+                              font-size: 1.25em;
+                              margin: 0.8em 0 0.3em 0;
+                            } 
 	    	.footer { display: none; }
 	    	#usuario { display: none; }
 	        #show-receta { display: none; }
 	        #menu { display: none; }
 	        #printable { display: block; }
+                #grailsLogo{ float: right}
+                .message{display:none;}
+                ol{  width: 45em; }
+                ol li{  float: left;  width: 15em; }
+                br{  clear: left;}
+                div.wrapper{  margin-bottom: 1em;}
+                ol li a{  display: block;  width: 15em;  text-decoration: none;}
+
 	    }
 	    </style>
                 
@@ -266,81 +280,33 @@
 
 
 <div id="printable">
-                          <table >
-                          <div id="printFrame" />
-                            <tr>
-                            
-                              <td>
-                                <g:if test="${recetaInstance?.nombre}">
-					<span id="nombre-label"><g:message code="receta.nombre.label" default="Nombre" /></span>
-					
-						<span  aria-labelledby="nombre-label"><g:fieldValue bean="${recetaInstance}" field="nombre"/></span>
-					
-				</g:if>
-                              </td>
-                              <td>
-                                <g:if test="${recetaInstance?.rendimiento}">
-					<span id="rendimiento-label" ><g:message code="receta.rendimiento.label" default="Rendimiento" /></span>
-					
-						<span  aria-labelledby="rendimiento-label"><g:fieldValue bean="${recetaInstance}" field="rendimiento"/></span>
-					
-				</li>
-				</g:if>
-                              </td>
-                              <td></td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <g:if test="${recetaInstance?.ingredientes}">
-				<li>
-					
-                                        <table>
-                                          <thead><td><g:message code="receta.ingredientes.label" default="Ingredientes" /></td></thead>
-                                          <tbody>
-                                       
-                                        
-						<g:each in="${recetaInstance.ingredientes}" var="i">
-						<tr><td><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></td></tr>
-						</g:each>
-                                          </tbody>
-					 </table>
-				</li>
-				</g:if>
-                              </td>
-<td colspan="2">
-                                <g:if test="${recetaInstance?.procedimiento}">
-					<span id="procedimiento-label" ><g:message code="receta.procedimiento.label" default="Procedimiento" /></span>
-					
-						<span aria-labelledby="procedimiento-label">${recetaInstance.procedimiento.decodeHTML()}</span>
-					
-				</g:if>
-                              </td>
-                            </tr>
-                            <tr>
-                              <td>
-                                <g:if test="${recetaInstance?.temperatura}">
-				<li  >
-					<span id="temperatura-label"  ><g:message code="receta.temperatura.label" default="Temperatura" /></span>
-					
-						<span aria-labelledby="temperatura-label"><g:fieldValue bean="${recetaInstance}" field="temperatura"/></span>
-					
-				</li>
-				</g:if>
-                              </td>
-                              <td>
-                                <g:if test="${recetaInstance?.tiempo}">
-				<li  >
-					<span id="tiempo-label"  ><g:message code="receta.tiempo.label" default="Tiempo" /></span>
-					
-						<span   aria-labelledby="tiempo-label"><g:fieldValue bean="${recetaInstance}" field="tiempo"/></span>
-					
-				</li>
-				</g:if>
-                              </td>
-                              
-			</td>
-                            </tr>
-                            </table>
+  
+  <h1><font style="text-transform: uppercase;"> <g:fieldValue bean="${recetaInstance}" field="nombre"/></font> </h1>
+  <h5><g:fieldValue bean="${recetaInstance}" field="rendimiento"/> porciones; 
+    <g:if test="${recetaInstance?.tiempo}">
+        <g:fieldValue bean="${recetaInstance}" field="tiempo"/> horas.</g:if>
+  </h5>
+  <hr>
+  <br/>
+  <center><h2>INGREDIENTES</h2></center>
+  <br/>
+  <div id="wrapper">
+    <ol>
+  	<g:each in="${recetaInstance.ingredientes}" var="i">
+          <li><h3><a><span aria-labelledby="ingredientes-label">${i?.encodeAsHTML()}</span></a></h3></li>        
+        </g:each>
+    </ol>
+  </div>
+  <br/>
+  <br/>
+  <div id="printProcedimiento">
+    <br/>
+    <center><h2>PROCEDIMIENTO</h2></center>
+    <h3>${recetaInstance.procedimiento.decodeHTML()}</h3>
+				
+  </div>
+  
+                          
                             </div>
 <script type="text/javascript">
 

@@ -15,7 +15,7 @@ class Ingrediente {
     }
     
     String toString(){
-        return materia.nombre +': '+cantidad +' '+unidadMedida
+        return cantidad + " " + unidadMedida + " " + materia.nombre +" " +presentacion + " " + etapa
         
     }
 }
