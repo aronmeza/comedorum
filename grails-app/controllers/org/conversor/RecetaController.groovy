@@ -161,30 +161,31 @@ class RecetaController {
 	
 	def indexSuma(){
 		def listaRecectas = Receta.findAll()
-     
+     	session.ObjectListKey = null
      [listaRecectasInstance: listaRecectas]
 	} 
 	
 	def sumaReceta(){
 		def listaRecectas = Receta.findAll()
      
-		println "SUMA RECETASSSS-------> $params"
-		def paramsIng= params.listaIngredientes
+		println "SUMA RECETASSSS-------> $params -----------"+session.ObjectListKey+"--------"
+		
+		def paramsIng= session.ObjectListKey
                 
 		if(params.nombre != null){
 			def id = Receta.findByNombre(params.nombre).id
 			if(id!=null){
 			def listaIngredientes
-				if(paramsIng != null){
+				if(paramsIng!=null){
+					println "bingoooooooo $paramsIng"				
 					listaIngredientes =recetaService.sumaIngredientes( paramsIng,  id, new BigDecimal(params.rendimiento));	
 				}
 				else{
+				println "no contiene ingredientes anteriores $paramsIng"
 					listaIngredientes =recetaService.sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
 				}
-//				println " 															"
-//				println "$listaIngredientes"
-//				println " 															"
-//				println "$listaRecectas"
+				
+				session.ObjectListKey = listaIngredientes
 				render(view: "indexSuma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas])
 				return
 			}else{

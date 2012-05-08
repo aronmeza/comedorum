@@ -36,8 +36,17 @@ class RecetaService {
         println "=================> $ingrs"
         Map<Long,Ingrediente> suma=new HashMap<Integer, BigDecimal>()
         for(Ingrediente ing:ingrs){
+        	if(ing.unidadMedida.equals('kg')||ing.unidadMedida.equals('l')){
+                ing.cantidad=ing.cantidad.multiply(new BigDecimal("1000"))
+                if(ing.unidadMedida.equals('kg')){
+                    ing.unidadMedida='gr'
+                }else{
+                    ing.unidadMedida='ml'
+                }
+            }
             suma.put(ing.id,ing)
         }
+        println "==SUMA===============> $suma"
         def receta=convertirReceta (null, rendimiento, idReceta)
         for(Ingrediente ingres:receta.ingredientes){
             if(ingres.unidadMedida.equals('kg')||ingres.unidadMedida.equals('l')){
@@ -49,6 +58,10 @@ class RecetaService {
                 }
                 
                 if(suma.containsKey(ingres.id)){
+                println "											"
+                println suma.getAt(ingres.id).cantidad.add(ingres.cantidad)
+                println suma.getAt(ingres.id).cantidad
+                println ingres.cantidad
                     ingres.cantidad=suma.getAt(ingres.id).cantidad.add(ingres.cantidad)
                     suma.put(ingres.id,ingres)
                 }else{
