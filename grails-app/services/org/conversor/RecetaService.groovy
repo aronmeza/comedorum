@@ -31,6 +31,7 @@ class RecetaService {
 	return recetaOriginal
 	}
         
+    @Transactional(readOnly = true)    
     List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Long idReceta, BigDecimal rendimiento){
         Map<Integer,BigDecimal> suma=new HashMap<Integer, BigDecimal>()
         for(Ingrediente ing:ingrs){
@@ -61,13 +62,15 @@ class RecetaService {
         def itera=llaves.iterator()
         while(itera.hasNext()){
             Integer id=itera.next()
+            println "$id"
             Ingrediente ingreFinal=new Ingrediente()
             Ingrediente tmp=Ingrediente.get(id)
             ingreFinal.cantidad=suma.get(id)
             ingreFinal.materia=tmp.materia
             ingrs.add(ingreFinal)
         }
-        
+        println "																	"
+        println ingrs
         return ingrs
     }
 }

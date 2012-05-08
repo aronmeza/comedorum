@@ -180,8 +180,11 @@ class RecetaController {
 				else{
 					listaIngredientes =recetaService.sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
 				}
-				
-				render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
+				println " 															"
+				prntln "$listaIngredientes"
+				println " 															"
+				prntln "$listaRecectas"
+				render(view: "indexSuma", model: [listaIngredientes: listaIngredientes,listaRecectasInstance: listaRecectas])
 				return
 			}else{
 		        flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
