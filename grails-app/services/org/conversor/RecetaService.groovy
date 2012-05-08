@@ -31,7 +31,7 @@ class RecetaService {
 	return recetaOriginal
 	}
         
-    List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Integer idReceta, BigDecimal rendimiento){
+    List<Ingrediente> sumaIngredientes(List<Ingrediente> ingrs, Long idReceta, BigDecimal rendimiento){
         Map<Integer,BigDecimal> suma=new HashMap<Integer, BigDecimal>()
         for(Ingrediente ing:ingrs){
             suma.put(ing.id,ing.cantidad)

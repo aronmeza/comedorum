@@ -15,8 +15,8 @@
 	    {
                 #printable h2{ color: #48802c;}
                 #printable h3{
-                              font-weight: normal;
-                              font-size: 1.25em;
+                              font-weight: lighter;
+                              font-size: .8em;
                               margin: 0.8em 0 0.3em 0;
                             } 
 	    	.footer { display: none; }

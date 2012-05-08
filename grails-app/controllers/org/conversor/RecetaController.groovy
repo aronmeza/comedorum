@@ -159,9 +159,45 @@ class RecetaController {
         render recetaInstance as JSON
 	}
 	
-	def s(){
-	println "                   params.term                  "
-		def filtro= params.term
+	def indexSuma(){
+		def listaRecectas = Receta.findAll()
+     
+     [listaRecectasInstance: listaRecectas]
+	} 
+	
+	def sumaReceta(){
+		def listaRecectas = Receta.findAll()
+     
+		println "SUMA RECETASSSS-------> $params"
+		def paramsIng= params.listaIngredientes
+		if(params.nombre != null){
+			def id = Receta.findByNombre(params.nombre).id
+			if(id!=null){
+			def listaIngredientes
+				if(paramsIng!=null){
+					listaIngredientes =sumaIngredientes( paramsIngrs,  id, new BigDecimal(params.rendimiento));	
+				}
+				else{
+					listaIngredientes =sumaIngredientes( new ArrayList<Ingrediente>(),  id, new BigDecimal(params.rendimiento));
+				}
+				
+				render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
+				return
+			}else{
+		        flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.nombre])
+	            redirect(action: "list")
+	            return
+			}
+		}else{
+			flash.message = message(code: 'default.not.found.message', args: [message(code: 'receta.label', default: 'Receta'), params.id])
+	            redirect(action: "list")
+            	return
+		}
+		
+		render(view: "indexSuma", model: [listaIngredientes: listaRecectas,listaRecectasInstance: listaRecectas])
 	}
+	
+	
+	
 }
  

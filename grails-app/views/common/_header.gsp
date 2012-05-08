@@ -13,8 +13,7 @@
     <li tabindex="0"><h2><g:link action="index" controller="materiaPrima"><g:message code="default.materiaPrima.label"/></g:link></h2>
     </li> 
     <sec:ifLoggedIn>
-      <li tabindex="0"><h2><g:link action="index" controller="factura"><g:message code="default.factura.label" default="Factura"/></g:link></h2></li>
-      
+      <li tabindex="0"><h2><g:link action="indexSuma" controller="receta"><g:message code="default.factura.label" default="Suma Recetas"/></g:link></h2></li>
 </sec:ifLoggedIn>
   </ul>
 
