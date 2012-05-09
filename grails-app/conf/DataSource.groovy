@@ -4,7 +4,7 @@ dataSource {
     username = "postgres"
     password = "admin"
     dbCreate = "update"//"create-drop"
-    url = 'jdbc:postgresql:comedorum'
+    url = 'jdbc:postgresql:comedorumproduction'
 }
 hibernate {
     cache.use_second_level_cache = true
@@ -17,19 +17,19 @@ environments {
     development {
         dataSource {
            dbCreate = "update"//"create-drop"
-            url = "jdbc:postgresql:comedorum"
+            url = "jdbc:postgresql:comedorumproduction"
         }
     }
     test {
         dataSource {
         	dbCreate = "update"//"create-drop"
-            url = "jdbc:postgresql:comedorum"
+            url = "jdbc:postgresql:comedorumproduction"
         }
     }
     production {
         dataSource {
             dbCreate = "update"//"create-drop"
-            url = "jdbc:postgresql:comedorum"
+            url = "jdbc:postgresql:comedorumproduction"
         }
 	hibernate{
 	   show_sql = false
